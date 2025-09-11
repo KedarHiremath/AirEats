@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Django
+*.sqlite3
+*.log
+db.sqlite3
+media/
+staticfiles/
+*.pot
+*.pyc
+*.mo
+
+# MongoDB / local data (optional)
+*.lock
+*.dump
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Environment / secrets
+.env
+.env.* 
+aireats/.env
+aireats/.env.*
+
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled / caches
+*.egg-info/
+dist/
+build/
+.eggs/
