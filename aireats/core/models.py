@@ -47,6 +47,150 @@ class BoardingDetails(Document):
 
 
 # ========================
+# Table 4: Payment
+# ========================
+class Payment(Document):
+    transaction_id = StringField(primary_key=True)
+    booking_id = StringField(required=True)  # FK → Booking.booking_id
+    timestamp = DateTimeField(required=True)
+    payment_method = StringField(required=True)  # UPI | Card | Wallet | Cash etc.
+
+    meta = {'collection': 'payments'}
+
+
+# ========================
+# Table 5: Menu & Booking
+# ========================
+from mongoengine import Document, EmbeddedDocument, fields
+from decimal import Decimal
+
+# ----------------------
+# Menu Collection (each document = 1 dish)
+# ----------------------
+class Menu(Document):
+    restaurant_id = fields.StringField(required=True)
+    restaurant_name = fields.StringField(required=True)
+    
+    dish_id = fields.StringField(required=True, unique=True)  # globally unique
+    dish_name = fields.StringField(required=True)
+    veg = fields.BooleanField(default=True)  # True = veg, False = non-veg
+    price = fields.DecimalField(required=True, precision=2)  # safer for money
+    category = fields.StringField()  # optional
+    cuisine = fields.StringField()   # optional
+    description = fields.StringField()  # optional
+
+    meta = {'collection': 'menu'}
+
+
+# ----------------------
+# Order Item (embedded in Booking)
+# ----------------------
+class OrderItem(EmbeddedDocument):
+    dish_id = fields.StringField(required=True)
+    dish_name = fields.StringField(required=True)
+    dish_price = fields.DecimalField(required=True, precision=2)
+    quantity = fields.IntField(required=True, min_value=1)
+
+
+# ----------------------
+# Table 2: Booking Collection
+# ----------------------
+class Booking(Document):
+    booking_id = fields.StringField(primary_key=True)
+    username = fields.StringField(required=True)  # FK → User.username
+    status = fields.StringField(
+        required=True,
+        choices=["Pending", "Confirmed", "Completed", "Cancelled"],
+        default="Pending"
+    )
+    date_time = fields.DateTimeField(required=True)
+    location = fields.StringField(required=True)
+    restaurant_id = fields.StringField()  # FK → Menu.restaurant_id
+    delivery_partner_id = fields.StringField()  # optional
+    boarding_pass_number = fields.StringField(required=True)  # FK → BoardingDetails.boarding_pass_number
+
+    # Embedded order items
+    order = fields.ListField(fields.EmbeddedDocumentField(OrderItem))
+
+    # Total amount (must be set by API, not auto-calculated here)
+    amount = fields.DecimalField(required=True, precision=2, default=Decimal('0.00'))
+
+    meta = {'collection': 'bookings'}
+
+
+'''
+# ========================
+# Table 5: Menu
+# ========================
+from mongoengine import Document, EmbeddedDocument, fields
+from decimal import Decimal
+
+# ----------------------
+# Menu Collection (each document = 1 dish)
+# ----------------------
+class Menu(Document):
+    restaurant_id = fields.StringField(required=True)
+    restaurant_name = fields.StringField(required=True)
+    
+    dish_id = fields.StringField(required=True, unique=True)  # globally unique
+    dish_name = fields.StringField(required=True)
+    veg = fields.BooleanField(default=True)  # True = veg, False = non-veg
+    price = fields.DecimalField(required=True, precision=2)  # safer for money
+    category = fields.StringField()  # optional
+    cuisine = fields.StringField()   # optional
+    description = fields.StringField()  # optional
+
+    meta = {'collection': 'menu'}
+
+
+# ----------------------
+# Order Item (embedded in Booking)
+# ----------------------
+class OrderItem(EmbeddedDocument):
+    dish_id = fields.StringField(required=True)
+    dish_name = fields.StringField(required=True)
+    dish_price = fields.DecimalField(required=True, precision=2)
+    quantity = fields.IntField(required=True, min_value=1)
+
+
+# ----------------------
+# Booking Collection
+# ----------------------
+class Booking(Document):
+    booking_id = fields.StringField(primary_key=True)
+    username = fields.StringField(required=True)  # FK → User.username
+    status = fields.StringField(
+        required=True,
+        choices=["Pending", "Confirmed", "Completed", "Cancelled"],
+        default="Pending"
+    )
+    date_time = fields.DateTimeField(required=True)
+    location = fields.StringField(required=True)
+    restaurant_id = fields.StringField()  # FK → Menu.restaurant_id
+    delivery_partner_id = fields.StringField()  # optional
+    boarding_pass_number = fields.StringField(required=True)  # FK → BoardingDetails.boarding_pass_number
+
+    # Embedded order items
+    order = fields.ListField(fields.EmbeddedDocumentField(OrderItem))
+
+    # Total amount calculated from order
+    amount = fields.DecimalField(required=True, precision=2, default=Decimal('0.00'))
+
+    meta = {'collection': 'bookings'}
+
+    # Calculate amount from order items
+    def calculate_amount(self):
+        self.amount = sum([item.dish_price * item.quantity for item in self.order])
+        return self.amount
+
+    # Override save to auto-calculate amount
+    def save(self, *args, **kwargs):
+        self.calculate_amount()
+        return super().save(*args, **kwargs)
+
+
+
+# ========================
 # Table 2: Booking
 # ========================
 class Booking(Document):
@@ -65,15 +209,4 @@ class Booking(Document):
     delivery_partner_id = StringField()  # Future FK
 
     meta = {'collection': 'bookings'}
-
-
-# ========================
-# Table 4: Payment
-# ========================
-class Payment(Document):
-    transaction_id = StringField(primary_key=True)
-    booking_id = StringField(required=True)  # FK → Booking.booking_id
-    timestamp = DateTimeField(required=True)
-    payment_method = StringField(required=True)  # UPI | Card | Wallet | Cash etc.
-
-    meta = {'collection': 'payments'}
+'''
