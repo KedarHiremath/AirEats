@@ -1,8 +1,9 @@
 from django.db import models
 
 # Create your models here.
-from mongoengine import Document, StringField, EmailField, IntField, DateField, EmbeddedDocument, EmbeddedDocumentField, FloatField, DateTimeField
 
+# core.models.py
+from mongoengine import Document, StringField, EmailField, IntField, DateField, EmbeddedDocument, EmbeddedDocumentField, FloatField, DateTimeField
 
 # ------------------------
 # Embedded Name Field
@@ -16,7 +17,7 @@ class Name(EmbeddedDocument):
 # Table 1: User
 # ========================
 class User(Document):
-    username = StringField(primary_key=True, required=True, max_length=50)
+    username = StringField(unique=True, required=True, max_length=50)
     password = StringField(required=True)   # will hash later
     name = EmbeddedDocumentField(Name, required=True)
     email = EmailField(required=True, unique=True)

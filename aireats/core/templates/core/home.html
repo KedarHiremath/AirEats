@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Home - AirEats{% endblock %}
+
+{% block content %}
+<h1>Welcome to AirEats</h1>
+<p>Your favorite meals delivered fast!</p>
+
+<!-- Example logo reuse -->
+<img src="{% static 'core/images/logo.png' %}" alt="AirEats Logo" height="120">
+
+<div>
+    <a href="{% url 'login_page' %}">Login</a> |
+    <a href="{% url 'signup_page' %}">Signup</a>
+</div>
+{% endblock %}

@@ -14,14 +14,37 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+'''
+# aireats/aireats/urls.py
+
+from django.contrib import admin
+from django.urls import path
+from core import views   # ✅ import both views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path('', views.home, name='home'),
+    path("api/login/", views.login, name="login"),
+    path("api/signup/", views.signup, name="signup"),  # ✅ now Django recognizes this
+]'''
 
 # aireats/aireats/urls.py
 
 from django.contrib import admin
 from django.urls import path
-from core.views import login
+from core import views
+from django.shortcuts import render
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/login/", login),
+    path('', views.home, name='home'),
+
+    # API endpoints
+    path("api/login/", views.login, name="login"),
+    path("api/signup/", views.signup, name="signup"),
+
+    # HTML pages
+    path("login/", lambda request: render(request, "core/login.html"), name="login_page"),
+    path("signup/", lambda request: render(request, "core/signup.html"), name="signup_page"),
 ]
+
