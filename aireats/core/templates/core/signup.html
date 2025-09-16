@@ -1,78 +1,37 @@
 {% extends 'core/base.html' %}
-{% load static %}
 
 {% block title %}Signup - AirEats{% endblock %}
 
 {% block content %}
 <h2>Signup</h2>
-<form id="signupForm">
-    <label>Username:</label><br>
-    <input type="text" id="username" required><br>
 
-    <label>Password:</label><br>
-    <input type="password" id="password" required><br>
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
 
-    <label>First Name:</label><br>
-    <input type="text" id="first_name" required><br>
+<form method="post" action="{% url 'signup_page' %}">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+    <input type="text" name="first_name" placeholder="First Name" required><br>
+    <input type="text" name="last_name" placeholder="Last Name" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="text" name="phone" placeholder="Phone" required><br>
 
-    <label>Last Name:</label><br>
-    <input type="text" id="last_name" required><br>
-
-    <label>Email:</label><br>
-    <input type="email" id="email" required><br>
-
-    <label>Phone:</label><br>
-    <input type="text" id="phone" required><br>
-
-    <!-- Optional fields -->
-    <label>Sex (Optional):</label><br>
-    <select id="sex">
-        <option value="">Select</option>
+    <select name="sex">
+        <option value="">Sex (Optional)</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>
     </select><br>
 
-    <label>Date of Birth (Optional):</label><br>
-    <input type="date" id="dob"><br>
-
-    <label>Nationality (Optional):</label><br>
-    <input type="text" id="nationality"><br>
-
-    <label>Address (Optional):</label><br>
-    <input type="text" id="address"><br><br>
+    <input type="date" name="dob" placeholder="Date of Birth"><br>
+    <input type="text" name="nationality" placeholder="Nationality"><br>
+    <input type="text" name="address" placeholder="Address"><br>
 
     <button type="submit">Signup</button>
 </form>
 
-<p id="signupMsg"></p>
-
-<script>
-document.getElementById('signupForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const payload = {
-        username: document.getElementById('username').value,
-        password: document.getElementById('password').value,
-        first_name: document.getElementById('first_name').value,
-        last_name: document.getElementById('last_name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        role: 1,  // ✅ Default role as normal user
-        sex: document.getElementById('sex').value,
-        dob: document.getElementById('dob').value,
-        nationality: document.getElementById('nationality').value,
-        address: document.getElementById('address').value
-    };
-
-    const response = await fetch("{% url 'signup' %}", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(payload)
-    });
-
-    const data = await response.json();
-    document.getElementById('signupMsg').innerText = data.message;
-});
-</script>
+<p>Already have an account? <a href="{% url 'login_page' %}">Login</a></p>
 {% endblock %}
