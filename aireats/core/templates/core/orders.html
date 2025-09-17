@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load custom_filters %}
+{% block title %}My Orders - AirEats{% endblock %}
+{% block content %}
+
+<h2>Confirmed Orders for {{ username }}</h2>
+
+{% if orders %}
+  <ul>
+    {% for order in orders %}
+      <li>
+        <h4>Booking ID: {{ order.booking_id }}</h4>
+        <p>Status: {{ order.status }}</p>
+        <p>Location: {{ order.location }}</p>
+        <p>Total: ₹{{ order.amount }}</p>
+
+        <h5>Items:</h5>
+        <ul>
+          {% for oi in order.order %}
+            <li>{{ oi.dish_name }} — ₹{{ oi.dish_price }} × {{ oi.quantity }}</li>
+          {% endfor %}
+        </ul>
+
+        {% with payments|get_item:order.booking_id as payment %}
+          {% if payment %}
+            <h5>Payment Details:</h5>
+            <p><strong>Transaction ID:</strong> {{ payment.transaction_id }}</p>
+            <p><strong>Method:</strong> {{ payment.payment_method }}</p>
+            <p><strong>Timestamp:</strong> {{ payment.timestamp }}</p>
+          {% else %}
+            <p style="color:red;">⚠ No payment record found!</p>
+          {% endif %}
+        {% endwith %}
+
+        <form method="post" style="margin-top:10px;">
+          {% csrf_token %}
+          <input type="hidden" name="booking_id" value="{{ order.booking_id }}">
+          <button type="submit">Received</button>
+        </form>
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No confirmed orders yet.</p>
+{% endif %}
+
+{% endblock %}

@@ -15,27 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-'''
-# aireats/urls.py
 
-from django.contrib import admin
-from django.urls import path
-from core import views
-from django.shortcuts import render
-
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', views.home, name='home'),
-
-    # API endpoints
-    path("api/login/", views.login, name="login"),
-    path("api/signup/", views.signup, name="signup"),
-
-    # HTML pages
-    path("login/", lambda request: render(request, "core/login.html"), name="login_page"),
-    path("signup/", lambda request: render(request, "core/signup.html"), name="signup_page"),
-]
-'''
+#aireats/urls.py
 from django.contrib import admin
 from django.urls import path
 from core import views
@@ -51,5 +32,13 @@ urlpatterns = [
 
     # Booking page (username passed in URL)
     path("booking/<str:username>/", views.booking_page, name="booking_page"),
+    path("booking/<str:username>/restaurant/<str:restaurant_id>/", views.restaurant_page, name="restaurant_page"),
+
+    # Payment + Orders
+    path("payment/<str:username>/<str:booking_id>/", views.payment_page, name="payment_page"),
+    path("orders/<str:username>/", views.orders_page, name="orders_page"),
+
+    # Orders
+    path("orderhistory/<str:username>/", views.order_history_page, name="order_history_page"),
 ]
 

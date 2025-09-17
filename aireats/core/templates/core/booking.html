@@ -1,8 +1,88 @@
 {% extends 'core/base.html' %}
-
 {% block title %}Booking - AirEats{% endblock %}
-
 {% block content %}
+
 <h2>Welcome, {{ username }}</h2>
-<p>Here you can make your bookings!</p>
+
+<!-- Quick navigation buttons -->
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'orders_page' username=username %}">
+        <button type="button">Confirmed Orders</button>
+    </a>
+    <a href="{% url 'order_history_page' username=username %}">
+        <button type="button">Order History</button>
+    </a>
+</div>
+
+{% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+{% if msg %}<p style="color:green;">{{ msg }}</p>{% endif %}
+
+<h3>Restaurants</h3>
+<ul>
+  {% for r in restaurants %}
+    <li>
+      <a href="{% url 'restaurant_page' username=username restaurant_id=r.restaurant_id %}">
+        {{ r.restaurant_name }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+<hr>
+<h3>Your Cart</h3>
+{% if cart %}
+  <ul>
+    {% for oi in cart %}
+      <li>
+        {{ oi.dish_name }} — ₹{{ oi.dish_price }} × {{ oi.quantity }}
+        <form method="post" style="display:inline;">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="add">
+          <input type="hidden" name="dish_id" value="{{ oi.dish_id }}">
+          <button type="submit">+</button>
+        </form>
+        <form method="post" style="display:inline;">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="remove">
+          <input type="hidden" name="dish_id" value="{{ oi.dish_id }}">
+          <button type="submit">−</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+  <p><strong>Total: ₹{{ total }}</strong></p>
+
+  <!-- If boarding pass not yet stored, show fetch form -->
+  {% if not booking.boarding_pass_number %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="fetch_details">
+      <label>Boarding Pass Number:</label>
+      <input type="text" name="boarding_pass_number" required>
+      <button type="submit">Fetch Details</button>
+    </form>
+  {% else %}
+    <!-- Display fetched details -->
+    <h4>Boarding Details</h4>
+    <p><strong>Boarding Pass:</strong> {{ booking.boarding_pass_number }}</p>
+    <p><strong>Location:</strong> {{ booking.location }}</p>
+
+    <!-- Reset boarding pass -->
+    <form method="post" style="display:inline;">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="reset_boarding">
+      <button type="submit">Reset Boarding Pass</button>
+    </form>
+
+    <!-- Place order button (next step) -->
+    <form action="{% url 'payment_page' username=username booking_id=booking.booking_id %}" method="get" style="display:inline; margin-left:10px;">
+      <button type="submit">Confirm Order</button>
+    </form>
+
+  {% endif %}
+
+{% else %}
+  <p>Your cart is empty.</p>
+{% endif %}
+
 {% endblock %}

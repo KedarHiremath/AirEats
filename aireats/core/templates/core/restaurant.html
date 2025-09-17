@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% block title %}Restaurant Menu{% endblock %}
+{% block content %}
+
+<h2>Restaurant Menu</h2>
+
+{% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+
+{% for item in dishes %}
+  <div>
+    <strong>{{ item.dish_name }}</strong> — ₹{{ item.price }}
+    <p>{{ item.description }}</p>
+
+    <form method="post" style="display:inline;">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="add">
+      <input type="hidden" name="dish_id" value="{{ item.dish_id }}">
+      <button type="submit">+</button>
+    </form>
+    <form method="post" style="display:inline;">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="remove">
+      <input type="hidden" name="dish_id" value="{{ item.dish_id }}">
+      <button type="submit">−</button>
+    </form>
+
+    <!-- ✅ Correct quantity display -->
+    {% with 0 as qty %}
+      {% for oi in cart %}
+        {% if oi.dish_id == item.dish_id %}
+          <span>Quantity: {{ oi.quantity }}</span>
+        {% endif %}
+      {% endfor %}
+    {% endwith %}
+  </div>
+  <hr>
+{% endfor %}
+
+<p><a href="{% url 'booking_page' username=username %}">← Back to Booking</a></p>
+
+{% endblock %}

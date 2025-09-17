@@ -37,7 +37,7 @@ class User(Document):
 # Table 3: Boarding Details
 # ========================
 class BoardingDetails(Document):
-    boarding_pass_number = StringField(primary_key=True)
+    boarding_pass_number = StringField(unique=True,required=True)
     flight_no = StringField(required=True)
     departure = StringField(required=True)
     arrival = StringField(required=True)
@@ -50,7 +50,7 @@ class BoardingDetails(Document):
 # Table 4: Payment
 # ========================
 class Payment(Document):
-    transaction_id = StringField(primary_key=True)
+    transaction_id = StringField(unique=True,required=True)
     booking_id = StringField(required=True)  # FK → Booking.booking_id
     timestamp = DateTimeField(required=True)
     payment_method = StringField(required=True)  # UPI | Card | Wallet | Cash etc.
@@ -107,7 +107,7 @@ class Booking(Document):
     location = fields.StringField(required=True)
     restaurant_id = fields.StringField()  # FK → Menu.restaurant_id
     delivery_partner_id = fields.StringField()  # optional
-    boarding_pass_number = fields.StringField(required=True)  # FK → BoardingDetails.boarding_pass_number
+    boarding_pass_number = fields.StringField(required=False)  # FK → BoardingDetails.boarding_pass_number
 
     # Embedded order items
     order = fields.ListField(fields.EmbeddedDocumentField(OrderItem))

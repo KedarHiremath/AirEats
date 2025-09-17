@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% block title %}Payment - AirEats{% endblock %}
+{% block content %}
+
+<h2>Payment for Booking {{ booking.booking_id }}</h2>
+<p><strong>Total Amount:</strong> ₹{{ booking.amount }}</p>
+
+{% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+  <label>Select Payment Method:</label><br>
+  <input type="radio" name="payment_method" value="UPI"> UPI<br>
+  <input type="radio" name="payment_method" value="Card"> Card<br>
+  <input type="radio" name="payment_method" value="Net Banking"> Net Banking<br>
+  <input type="radio" name="payment_method" value="Cash"> Cash<br>
+  <br>
+  <button type="submit">Make Payment</button>
+</form>
+
+{% endblock %}
