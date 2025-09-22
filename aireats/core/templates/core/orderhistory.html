@@ -1,30 +1,44 @@
 {% extends 'core/base.html' %}
+{% load custom_filters %}
+
 {% block title %}Order History - AirEats{% endblock %}
+{% block body_class %}orders-page{% endblock %}
+
 {% block content %}
+<div class="orders-container">
+    <h2>Order History for {{ username }}</h2>
 
-<h2>Order History for {{ username }}</h2>
+    {% if orders %}
+      <ul class="orders-list">
+        {% for order in orders %}
+          <li class="order-card">
+            <h4>Booking ID: {{ order.booking_id }}</h4>
+            <p><strong>Status:</strong> {{ order.status }}</p>
+            <p><strong>Location:</strong> {{ order.location }}</p>
+            <p><strong>Total:</strong> ₹{{ order.amount }}</p>
 
-{% if orders %}
-  <ul>
-    {% for order in orders %}
-      <li>
-        <h4>Booking ID: {{ order.booking_id }}</h4>
-        <p>Status: {{ order.status }}</p>
-        <p>Location: {{ order.location }}</p>
-        <p>Total: ₹{{ order.amount }}</p>
+            <h5>Items:</h5>
+            <ul class="order-items">
+              {% for oi in order.order %}
+                <li>{{ oi.dish_name }} — ₹{{ oi.dish_price }} × {{ oi.quantity }}</li>
+              {% endfor %}
+            </ul>
 
-        <h5>Items:</h5>
-        <ul>
-          {% for oi in order.order %}
-            <li>{{ oi.dish_name }} — ₹{{ oi.dish_price }} × {{ oi.quantity }}</li>
-          {% endfor %}
-        </ul>
-      </li>
-      <hr>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No completed orders yet.</p>
-{% endif %}
-
+            {% with payments|get_item:order.booking_id as payment %}
+              {% if payment %}
+                <h5>Payment Details:</h5>
+                <p><strong>Transaction ID:</strong> {{ payment.transaction_id }}</p>
+                <p><strong>Method:</strong> {{ payment.payment_method }}</p>
+                <p><strong>Timestamp:</strong> {{ payment.timestamp }}</p>
+              {% else %}
+                <p style="color:red;">⚠ No payment record found!</p>
+              {% endif %}
+            {% endwith %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No completed orders yet.</p>
+    {% endif %}
+</div>
 {% endblock %}

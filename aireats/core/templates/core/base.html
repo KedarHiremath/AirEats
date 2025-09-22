@@ -4,17 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}AirEats{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
-<body>
-    <!-- Header with Logo -->
-    <header>
-        <img src="{% static 'core/images/logo.png' %}" alt="AirEats Logo" height="60">
-        <nav>
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'login_page' %}">Login</a>
-            <a href="{% url 'signup_page' %}">Signup</a>
-        </nav>
+<body class="{% block body_class %}{% endblock %}">
+
+    {% comment %}
+        Show navbar only if body_class is NOT 'login-page' or 'signup-page'
+    {% endcomment %}
+    {% if body_class != 'login-page' and body_class != 'signup-page' %}
+    <!-- Header with Logo + Smart Navbar -->
+    <header class="ae-header">
+        <div class="ae-header-inner">
+            <a class="ae-logo" href="{% url 'home' %}">
+                <img src="{% static 'core/images/logo.png' %}" alt="AirEats Logo" height="48">
+            </a>
+
+            <nav class="ae-nav" aria-label="Main navigation">
+                <a href="{% url 'home' %}">Home</a>
+
+                {% if username %}
+                    <a href="{% url 'booking_page' username=username %}">Dashboard</a>
+                    <a href="{% url 'orders_page' username=username %}">Orders</a>
+                    <a href="{% url 'order_history_page' username=username %}">Order History</a>
+                {% else %}
+                    <a href="{% url 'login_page' %}">Dashboard</a>
+                    <a href="{% url 'login_page' %}">Orders</a>
+                    <a href="{% url 'login_page' %}">Order History</a>
+                {% endif %}
+
+                {% if username %}
+                    
+                {% endif %}
+            </nav>
+        </div>
     </header>
+    {% endif %}
 
     <!-- Page content -->
     <main>

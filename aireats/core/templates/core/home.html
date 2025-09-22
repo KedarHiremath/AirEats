@@ -2,16 +2,26 @@
 {% load static %}
 
 {% block title %}Home - AirEats{% endblock %}
+{% block body_class %}home-page{% endblock %}
 
 {% block content %}
-<h1>Welcome to AirEats</h1>
-<p>Your favorite meals delivered fast!</p>
+<!-- Left-side content container -->
+<div class="ae-home-content">
 
-<!-- Example logo reuse -->
-<img src="{% static 'core/images/logo.png' %}" alt="AirEats Logo" height="120">
+    <!-- Heading -->
+    <h1 class="ae-heading">Hungry? Just <span class="ae-highlight">AirEats</span>.</h1>
 
-<div>
-    <a href="{% url 'login_page' %}">Login</a> |
-    <a href="{% url 'signup_page' %}">Signup</a>
+    <!-- Subheading -->
+    <p class="ae-sub">Because airplane mode doesn’t apply to hunger.</p>
+
+    <!-- Buttons -->
+    <div class="ae-ctas">
+        <a href="{% url 'login_page' %}" class="ae-btn">Login</a>
+        <a href="{% url 'signup_page' %}" class="ae-btn ae-btn-outline">Signup</a>
+        {% if username %}
+        <a href="{% url 'booking_page' username=username %}" class="ae-btn ae-btn-outline">My Dashboard</a>
+        {% endif %}
+    </div>
+
 </div>
 {% endblock %}

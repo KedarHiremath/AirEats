@@ -1,0 +1,1028 @@
+/* Full-page container for login page */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* aligns card to top, allows scroll */
+    padding: 40px 20px;
+    min-height: 100vh;       /* full viewport height */
+    background: linear-gradient(135deg, #01337e, #be3500);
+    box-sizing: border-box;
+}
+
+/* Allow vertical scrolling if content exceeds viewport */
+body.login-page {
+    overflow-y: auto;
+}
+
+/* Login card styling */
+.login-card {
+    background: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Logo inside login card */
+.logo img {
+    width: 70px;
+    margin-bottom: 15px;
+}
+
+/* Page titles */
+.login-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.login-subtitle {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #4CAFED;
+    box-shadow: 0px 0px 6px rgba(76, 175, 237, 0.3);
+}
+
+/* Login button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #4CAFED;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #3b91d6;
+}
+
+/* Error message */
+.error-message {
+    color: #e63946;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Signup link text */
+.signup-text {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.signup-text a {
+    color: #4CAFED;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* Signup Page Styling */
+/* Signup Page Styling */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* aligns card to top, allows scroll */
+    padding: 40px 20px;
+    min-height: 100vh;       /* full viewport height */
+    background: linear-gradient(135deg, #01337e, #be3500);
+    box-sizing: border-box;
+}
+
+body.signup-page {
+    overflow-y: auto; /* allow vertical scrolling */
+}
+
+.signup-card {
+    background: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.logo img {
+    width: 70px;
+    margin-bottom: 15px;
+}
+
+.signup-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.signup-subtitle {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #4CAFED;
+    box-shadow: 0px 0px 6px rgba(76, 175, 237, 0.3);
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    background: #4CAFED;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-btn:hover {
+    background: #3b91d6;
+}
+
+.error-message {
+    color: #e63946;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.login-text {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.login-text a {
+    color: #4CAFED;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* -------------------------
+   AirEats Home: fullscreen background slider + center strip
+   ------------------------- */
+
+/* -------------------------
+   AirEats Home Page Styling
+   ------------------------- */
+
+body.home-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background: url('images/home_background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;  /* prevent horizontal scroll */
+    overflow-y: auto;    /* allow vertical scroll if needed */
+}
+
+/* Navbar: logo + links in the same line */
+.ae-header {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    z-index: 2;
+    padding: 10px 15px;
+}
+
+.ae-header-inner {
+    display: flex;              /* horizontal layout */
+    align-items: center;        /* vertical centering */
+    justify-content: flex-start; /* logo left, nav next to it */
+    gap: 50px;                  /* spacing between logo and nav */
+    width: 100%;
+}
+
+
+/* Navbar links */
+.ae-header a {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-right: 25px;            /* spacing between items */
+}
+
+.ae-header a:last-child {
+    margin-right: 0;
+}
+
+.ae-header a:hover {
+    text-decoration: underline;
+}
+
+/* Logo */
+.ae-header .ae-logo img {
+    width: 110px !important;
+    height: auto !important;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 70px;
+    border-top-right-radius: 60px;
+    border-top-left-radius: 120px;
+}
+
+/* Left content section (heading + subheading + buttons) */
+.ae-home-content {
+    position: absolute;
+    top: 60%;                    /* lower on the page */
+    left: 50px;
+    transform: translateY(-50%);
+    max-width: 450px;
+    color: #fff;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Heading */
+.ae-home-content .ae-heading {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.1;
+    font-family: 'Poppins', sans-serif; /* funky, modern font */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
+/* Highlight effect on AirEats */
+/* Highlight effect on AirEats */
+.ae-home-content .ae-highlight {
+    background: linear-gradient(90deg, #ff6b45, #ff4d4d);
+    padding: 2px 8px;        /* reduced padding */
+    border-radius: 6px;      /* slightly smaller radius */
+    line-height: 1;           /* make it same as text line height */
+    display: inline-block;    /* ensures proper box sizing */
+}
+
+/* Subheading */
+.ae-home-content .ae-sub {
+    font-size: 1.8rem;
+    font-family: 'Dancing Script', cursive; /* funky italic font */
+    font-style: italic;
+    color: #fff;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+    margin-bottom: 30px;
+}
+
+/* Buttons container */
+.ae-home-content .ae-ctas {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.ae-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff6b45, #ff4d4d);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 24px rgba(255,90,60,0.15);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.ae-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(255,90,60,0.2);
+}
+
+/* Outline button */
+.ae-btn-outline {
+    background: transparent;
+    color: #ff5c3a;
+    border: 2px solid rgba(255,92,58,0.4);
+    box-shadow: none;
+}
+
+.ae-btn-outline:hover {
+    background: rgba(255,92,58,0.08);
+    color: #ff4d4d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .ae-home-content {
+        left: 30px;
+        max-width: 90%;
+    }
+    .ae-home-content .ae-heading {
+        font-size: 3rem;
+    }
+    .ae-home-content .ae-sub {
+        font-size: 1.5rem;
+    }
+    .ae-ctas {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ae-home-content {
+        left: 20px;
+        top: 55%;
+    }
+    .ae-home-content .ae-heading {
+        font-size: 2.5rem;
+    }
+    .ae-home-content .ae-sub {
+        font-size: 1.3rem;
+    }
+    .ae-ctas {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+/* ---------------------------
+   Generic Dashboard Styles
+   (apply to ALL pages using dashboard-container)
+----------------------------*/
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Welcome Heading */
+.dashboard-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Quick Navigation Buttons */
+.dashboard-container > div a button {
+    background: #4CAFED;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.dashboard-container > div a button:hover {
+    background: #3b91d6;
+}
+
+/* Section Titles */
+.dashboard-container h3, 
+.dashboard-container h4 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #222;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Restaurant List */
+.dashboard-container ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+.dashboard-container ul li {
+    background: #f8f8f8;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+.dashboard-container ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+.dashboard-container ul li:hover {
+    background: #e6f0ff;
+}
+
+/* Cart Section */
+.dashboard-container p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+.dashboard-container form {
+    display: inline-block;
+}
+.dashboard-container form button {
+    background: #4CAFED;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.dashboard-container form button:hover {
+    background: #3b91d6;
+}
+
+/* Input Fields */
+.dashboard-container input[type="text"] {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+/* Messages */
+.dashboard-container p[style*="color:red"] {
+    color: #e63946;
+    font-weight: 500;
+}
+.dashboard-container p[style*="color:green"] {
+    color: #2a9d8f;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+    .dashboard-container > div a button {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .dashboard-container ul li {
+        font-size: 0.95rem;
+    }
+    .dashboard-container input[type="text"] {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+
+/* ---------------------------
+   Booking Page Only Styles
+   (scoped to body.booking-page)
+----------------------------*/
+
+/* Background */
+body.booking-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: url("/static/core/images/bg2.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+/* Dashboard Container */
+body.booking-page .dashboard-container {
+    max-width: 1200px;
+    margin: 160px auto 40px; /* push below navbar */
+    padding: 20px 30px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+}
+
+/* Welcome Heading */
+body.booking-page .dashboard-container h2 {
+    color: #f9f9f9;
+}
+
+/* Quick Nav */
+body.booking-page .quick-nav a button {
+    background: #4CAFED;
+    color: #fff;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+body.booking-page .quick-nav a button:hover {
+    background: #3b91d6;
+}
+
+/* Section Titles */
+body.booking-page .dashboard-container h3, 
+body.booking-page .dashboard-container h4 {
+    color: #ffdd57;
+    border-bottom: 2px solid #ffdd57;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+}
+
+/* Restaurant Grid */
+body.booking-page .restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+body.booking-page .restaurant-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+body.booking-page .restaurant-card:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-4px);
+}
+body.booking-page .restaurant-card a {
+    color: #fff;
+    text-decoration: none;
+}
+body.booking-page .restaurant-card h4 {
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+/* Restaurant Logo */
+body.booking-page .restaurant-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    background: #fff;
+    padding: 6px;
+}
+
+/* Cart Section */
+body.booking-page .cart-list li {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 8px;
+}
+body.booking-page .cart-list form button {
+    background: #4CAFED;
+    color: #fff;
+    margin-left: 6px;
+    padding: 3px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+body.booking-page .cart-list form button:hover {
+    background: #3b91d6;
+}
+
+/* Input Fields */
+body.booking-page .dashboard-container input[type="text"] {
+    color: #333;
+    padding: 6px;
+    border-radius: 6px;
+    border: none;
+}
+
+/* Messages */
+body.booking-page .error { color: #ff6b6b; }
+body.booking-page .success { color: #90ee90; }
+
+
+body.restaurant-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #f4f4f4;
+    background: url("/static/core/images/bg2.jpg") no-repeat center center fixed;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Container */
+.restaurant-container {
+    max-width: 1000px;
+    margin: 150px auto 40px;
+    padding: 20px 30px;
+    background: rgb(251 181 154 / 90%);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+.restaurant-container h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Menu List */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* Menu Card */
+.menu-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+.menu-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Dish Image */
+.menu-card .dish-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 12px;
+}
+
+/* Menu Details */
+.menu-card .menu-details h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+.menu-card .menu-details p {
+    margin: 4px 0 6px;
+    font-size: 0.95rem;
+}
+.menu-card .menu-details .veg {
+    color: green;
+    font-weight: 600;
+}
+.menu-card .menu-details .non-veg {
+    color: red;
+    font-weight: 600;
+}
+
+/* Add Button */
+.menu-card .menu-details form button {
+    background: #4CAFED;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.menu-card .menu-details form button:hover {
+    background: #3b91d6;
+}
+
+/* Back link */
+.back-booking {
+    display: inline-block;
+    margin-top: 20px;
+    color: #fdfdfd;
+    text-decoration: none;
+    font-weight: 500;
+}
+.back-booking:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* Background */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: url("/static/core/images/bg2.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Container */
+.payment-container {
+    max-width: 700px;
+    margin: 220px auto 10px;
+    padding: 25px 35px;
+    background: rgb(251 181 154 / 90%);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+/* Heading */
+.payment-container h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+/* Error */
+.payment-container .error {
+    color: red;
+    font-weight: 600;
+}
+
+/* Payment Options Layout */
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+/* Tile */
+.payment-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Hide radio button */
+.payment-tile input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Tile image */
+.payment-tile img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+/* Hover + Checked styles */
+.payment-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.payment-tile input[type="radio"]:checked + img,
+.payment-tile input[type="radio"]:checked + img + span {
+    border: 2px solid #4CAFED;
+    border-radius: 8px;
+    padding: 2px;
+    color: #4CAFED;
+    font-weight: 600;
+}
+
+/* Pay button */
+.pay-btn {
+    background: #4CAFED;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.pay-btn:hover {
+    background: #3b91d6;
+}
+
+
+
+body.orders-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: url("/static/core/images/bg2.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Container */
+.orders-container {
+    max-width: 1000px;
+    margin: 150px auto 40px;
+    padding: 25px 30px;
+    background: rgb(251 181 154 / 90%); /* semi-transparent white */
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+}
+
+/* Heading */
+.orders-container h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Individual Orders */
+.orders-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.orders-container li {
+    background: rgba(255,255,255,0.85);
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.orders-container li h4 {
+    margin: 0 0 6px 0;
+    color: #4CAFED;
+}
+
+.orders-container li p {
+    margin: 4px 0;
+    color: #333;
+}
+
+.orders-container li hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/* Items List */
+.orders-container li ul {
+    padding-left: 20px;
+    margin: 6px 0;
+}
+
+.orders-container li ul li {
+    margin-bottom: 4px;
+}
+
+/* Payment Details */
+.orders-container li h5 {
+    margin: 8px 0 4px 0;
+    color: #ff9800;
+}
+
+.orders-container li form button {
+    background: #4CAFED;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.2s;
+}
+
+.orders-container li form button:hover {
+    background: #3b91d6;
+}
+
+
+
+
+
+
+body.orders-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: url("/static/core/images/bg2.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Container */
+.orders-container {
+    max-width: 1000px;
+    margin: 150px auto 40px;
+    padding: 25px 30px;
+    background: rgb(251 181 154 / 90%); /* semi-transparent white */
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+}
+
+/* Heading */
+.orders-container h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Orders list */
+.orders-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-card {
+    background: rgba(255,255,255,0.95);
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.order-card h4 {
+    margin: 0 0 6px 0;
+    font-size: 1.2rem;
+    color: #4CAFED;
+}
+
+.order-card p, .order-card h5 {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.order-items {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 5px 0 0 0;
+}
+.order-items li {
+    margin-bottom: 3px;
+}
+
+/* Optional: remove vertical scrollbar if not needed */
+body.orders-page {
+    overflow-y: auto;
+}

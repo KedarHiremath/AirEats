@@ -1,41 +1,40 @@
 {% extends 'core/base.html' %}
-{% block title %}Restaurant Menu{% endblock %}
+{% load static %}
+
+{% block title %}{{ restaurant.name }} - AirEats{% endblock %}
+{% block body_class %}restaurant-page{% endblock %}
+
 {% block content %}
+<div class="restaurant-container">
+    <h2>{{ restaurant.name }}</h2>
 
-<h2>Restaurant Menu</h2>
+    <div class="menu-list">
+      {% for item in restaurant.menu %}
+        <div class="menu-card">
+            <img class="dish-img" 
+                 src="{% static 'core/images/dishes/' %}{{ restaurant.name|lower }}/{{ item.dish_id }}.jpg" 
+                 alt="{{ item.dish_name }}">
+            <div class="menu-details">
+                <h4>{{ item.dish_name }}</h4>
+                <p>₹{{ item.price }} 
+                  {% if item.veg %}
+                    <span class="veg">(Veg)</span>
+                  {% else %}
+                    <span class="non-veg">(Non-Veg)</span>
+                  {% endif %}
+                </p>
 
-{% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
-
-{% for item in dishes %}
-  <div>
-    <strong>{{ item.dish_name }}</strong> — ₹{{ item.price }}
-    <p>{{ item.description }}</p>
-
-    <form method="post" style="display:inline;">
-      {% csrf_token %}
-      <input type="hidden" name="action" value="add">
-      <input type="hidden" name="dish_id" value="{{ item.dish_id }}">
-      <button type="submit">+</button>
-    </form>
-    <form method="post" style="display:inline;">
-      {% csrf_token %}
-      <input type="hidden" name="action" value="remove">
-      <input type="hidden" name="dish_id" value="{{ item.dish_id }}">
-      <button type="submit">−</button>
-    </form>
-
-    <!-- ✅ Correct quantity display -->
-    {% with 0 as qty %}
-      {% for oi in cart %}
-        {% if oi.dish_id == item.dish_id %}
-          <span>Quantity: {{ oi.quantity }}</span>
-        {% endif %}
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="dish_id" value="{{ item.dish_id }}">
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
       {% endfor %}
-    {% endwith %}
-  </div>
-  <hr>
-{% endfor %}
+    </div>
 
-<p><a href="{% url 'booking_page' username=username %}">← Back to Booking</a></p>
-
+    <a href="{% url 'booking_page' username=username %}" class="back-booking">← Back to Booking</a>
+</div>
 {% endblock %}
